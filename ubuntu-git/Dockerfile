@@ -47,6 +47,8 @@ RUN update-alternatives --config java
 
 # export env variables
 RUN touch /etc/profile.d/variables.sh
+RUN echo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91 >> /etc/profile.d/variables.sh
+RUN echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/profile.d/variables.sh
 
 RUN apt-get clean
 
