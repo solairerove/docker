@@ -38,6 +38,7 @@ RUN \
   rm -rf /var/cache/oracle-jdk8-installer
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+ENV LANG C.UTF-8
 
 # maven 3.3.9
 ENV MAVEN_VERSION 3.3.9
@@ -60,5 +61,5 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
 
 WORKDIR /data
-
+EXPOSE 8080
 CMD ["bash"]

@@ -2,7 +2,7 @@
 
 * `cd ubuntu-git/`
 * `docker build -t name-of-image:tag-of-image .`
-* `docker run -t -i name-of-image:tag-of-image`
+* `docker run -t -i -p 8080:8080 name-of-image:tag-of-image`
 * `docker rename old-name new-name`
 
 ___
