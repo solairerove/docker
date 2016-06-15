@@ -37,7 +37,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf /var/cache/oracle-jdk8-installer
 
-ENV JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91/jre
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # maven 3.3.9
 ENV MAVEN_VERSION 3.3.9
@@ -47,16 +47,12 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
     | tar -xzC /usr/share/maven --strip-components=1 \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-ENV MAVEN_HOME=/usr/share/maven
+ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG /root/.m2
 ENV COPY_REFERENCE_FILE_LOG $MAVEN_CONFIG copy_reference_file.log
 
-COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY settings-docker.xml /usr/share/maven/ref/
-
 VOLUME /root/.m2
 
-ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
 
 # clean

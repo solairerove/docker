@@ -23,5 +23,11 @@ ___
 ##### Apps:
 
 * `git`
-* `ssh`
+* `openssh-server`
+* `openssh-client`
 * `nano`
+* `curl`
+* `software-properties-common`
+* `python-software-properties`
+* `oracle jdk 8`
+* `apache maven 3.3.9`
