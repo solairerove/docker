@@ -23,13 +23,13 @@ RUN useradd -u 1000 webapps
 # Create base path
 RUN mkdir /config /data
 
-RUN apt-get install -y \
-        git \
-        openssh-server \
-        openssh-client \
-        nano \
-        curl
-&& rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y && \
+        git && \
+        openssh-server && \
+        openssh-client && \
+        nano && \
+        curl && \
+	rm -rf /var/lib/apt/lists/*
 
 # download oracle jdk
 RUN curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz -O
