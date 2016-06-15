@@ -24,11 +24,29 @@ RUN useradd -u 1000 webapps
 RUN mkdir /config /data
 
 RUN apt-get install -y \
-	git \
-	openssh-server \
-	openssh-client \
-	nano \
+        git \
+        openssh-server \
+        openssh-client \
+        nano \
+        curl
 && rm -rf /var/lib/apt/lists/*
+
+# download oracle jdk
+RUN curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz -O
+
+# create dir, unzip jdk and delete archive
+RUN mkdir -p /usr/lib/jvm
+RUN tar -xf jdk-8u91-linux-x64.tar.gz -C /usr/lib/jvm
+RUN rm jdk-8u91-linux-x64.tar.gz
+
+# update-alternatives
+RUN update-alternatives --install /usr/lib/javac javac /usr/lib/jvm/jdk1.8.0_91/bin/javac 1
+RUN update-alternatives --install /usr/lib/java java /usr/lib/jvm/jdk1.8.0_91/bin/java 1
+RUN update-alternatives --config javac
+RUN update-alternatives --config java
+
+# export env variables
+RUN touch /etc/profile.d/variables.sh
 
 RUN apt-get clean
 
