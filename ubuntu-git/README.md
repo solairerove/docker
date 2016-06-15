@@ -1,8 +1,8 @@
 ##### Ubuntu:14.04 image for docker:
 
 * `cd ubuntu-git/`
-* `docker build -t name-of-image .`
-* `docker run -t -i name-of-container:your-tag /bin/bash`
+* `docker build -t name-of-image:tag-of-image .`
+* `docker run -t -i name-of-image:tag-of-image /bin/bash`
 
 ___
 

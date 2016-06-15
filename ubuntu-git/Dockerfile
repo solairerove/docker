@@ -32,6 +32,3 @@ RUN apt-get install -y \
 
 RUN apt-get clean
 
-ADD config /config
-RUN chmod +x /config/loop.sh
-CMD ["/config/loop.sh"]
