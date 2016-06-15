@@ -20,38 +20,48 @@ RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervis
 
 RUN useradd -u 1000 webapps
 
-# Create base path
-RUN mkdir /config /data
-
 RUN apt-get install -y \
         git \
         openssh-server \
         openssh-client \
         nano \
-        curl
+        curl \
+	software-properties-common \
+	python-software-properties
 
-RUN rm -rf /var/lib/apt/lists/*
+RUN \
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
 
 # download oracle jdk
-RUN curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz -O
+#RUN curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz -O
 
 # create dir, unzip jdk and delete archive
-RUN mkdir -p /usr/lib/jvm
-RUN tar -xf jdk-8u91-linux-x64.tar.gz -C /usr/lib/jvm
-RUN rm jdk-8u91-linux-x64.tar.gz
+#RUN mkdir -p /usr/lib/jvm
+#RUN tar -xf jdk-8u91-linux-x64.tar.gz -C /usr/lib/jvm
+#RUN rm jdk-8u91-linux-x64.tar.gz
 
 # update-alternatives
-RUN update-alternatives --install /usr/lib/javac javac /usr/lib/jvm/jdk1.8.0_91/bin/javac 1
-RUN update-alternatives --install /usr/lib/java java /usr/lib/jvm/jdk1.8.0_91/bin/java 1
-RUN update-alternatives --config javac
-RUN update-alternatives --config java
+#RUN update-alternatives --install /usr/lib/javac javac /usr/lib/jvm/jdk1.8.0_91/bin/javac 1
+#RUN update-alternatives --install /usr/lib/java java /usr/lib/jvm/jdk1.8.0_91/bin/java 1
+#RUN update-alternatives --config javac
+#RUN update-alternatives --config java
 
 # export env variables
 #RUN touch /etc/profile.d/variables.sh
 #RUN echo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91 >> /etc/profile.d/variables.sh
 #RUN echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/profile.d/variables.sh
 
-ENV JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN apt-get clean
 
+WORKDIR /data
+
+ENV JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91
+
+CMD ["bash"]
