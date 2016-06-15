@@ -23,13 +23,14 @@ RUN useradd -u 1000 webapps
 # Create base path
 RUN mkdir /config /data
 
-RUN apt-get install -y && \
-        git && \
-        openssh-server && \
-        openssh-client && \
-        nano && \
-        curl && \
-	rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y \
+        git \
+        openssh-server \
+        openssh-client \
+        nano \
+        curl
+
+RUN rm -rf /var/lib/apt/lists/*
 
 # download oracle jdk
 RUN curl -L -b "oraclelicense=a" http://download.oracle.com/otn-pub/java/jdk/8u91-b14/jdk-8u91-linux-x64.tar.gz -O
@@ -46,9 +47,11 @@ RUN update-alternatives --config javac
 RUN update-alternatives --config java
 
 # export env variables
-RUN touch /etc/profile.d/variables.sh
-RUN echo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91 >> /etc/profile.d/variables.sh
-RUN echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/profile.d/variables.sh
+#RUN touch /etc/profile.d/variables.sh
+#RUN echo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91 >> /etc/profile.d/variables.sh
+#RUN echo export PATH=$JAVA_HOME/bin:$PATH >> /etc/profile.d/variables.sh
+
+ENV JAVA_HOME=/usr/lib/jvm/jdk1.8.0_91
 
 RUN apt-get clean
 
