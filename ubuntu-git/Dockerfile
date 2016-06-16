@@ -7,26 +7,14 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV MAVEN_VERSION 3.3.9
 ENV TOMCAT_VERSION 8.0.35
 
-# set locales
-RUN locale-gen en_GB.UTF-8
-ENV LANG en_GB.UTF-8
-ENV LC_CTYPE en_GB.UTF-8
-
 # fuck off from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
-
-# update
-RUN apt-get update
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
-RUN apt-get upgrade -y
-
-RUN apt-get install -y ca-certificates inotify-tools pwgen supervisor unzip wget python-setuptools
-RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
-RUN useradd -u 1000 webapps
+#RUN apt-get upgrade -y
 
 # install dependencies
-RUN apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         openssh-server \
         openssh-client \
@@ -34,7 +22,11 @@ RUN apt-get install -y \
         curl \
 	wget \
 	software-properties-common \
-	python-software-properties
+	python-software-properties \
+	supervisor
+
+RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
+RUN useradd -u 1000 webapps
 
 # install jdk 8
 RUN \
@@ -69,9 +61,6 @@ rm /tmp/tomcat.tgz && \
 rm -rf /opt/tomcat/webapps/examples && \
 rm -rf /opt/tomcat/webapps/docs && \
 rm -rf /opt/tomcat/webapps/ROOT
-
-# Add admin/admin user
-#ADD tomcat-users.xml /opt/tomcat/conf/
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin
