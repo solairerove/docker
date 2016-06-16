@@ -2,12 +2,19 @@ FROM ubuntu:14.04
 
 MAINTAINER "Nikita Krivitski" <hax2033@gmail.com>
 
+# set versions
+ENV DEBIAN_FRONTEND noninteractive
+ENV MAVEN_VERSION 3.3.9
+ENV TOMCAT_VERSION 8.0.35
+
+# set locales
+RUN locale-gen en_GB.UTF-8
+ENV LANG en_GB.UTF-8
+ENV LC_CTYPE en_GB.UTF-8
+
 # fuck off from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
-
-# let the container know that there is no tty
-ENV DEBIAN_FRONTEND noninteractive
 
 # update
 RUN apt-get update
@@ -18,17 +25,18 @@ RUN apt-get install -y ca-certificates inotify-tools pwgen supervisor unzip wget
 RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 RUN useradd -u 1000 webapps
 
-# install needed soft
+# install dependencies
 RUN apt-get install -y \
         git \
         openssh-server \
         openssh-client \
         nano \
         curl \
+	wget \
 	software-properties-common \
 	python-software-properties
 
-# jdk 8
+# install jdk 8
 RUN \
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
   add-apt-repository -y ppa:webupd8team/java && \
@@ -38,11 +46,8 @@ RUN \
   rm -rf /var/cache/oracle-jdk8-installer
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
-ENV LANG C.UTF-8
 
-# maven 3.3.9
-ENV MAVEN_VERSION 3.3.9
-
+# install maven 3.3.9
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && curl -fsSL http://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
     | tar -xzC /usr/share/maven --strip-components=1 \
@@ -56,10 +61,28 @@ VOLUME /root/.m2
 
 CMD ["mvn"]
 
+# install tomcat 8
+RUN wget --quiet --no-cookies http://apache.rediris.es/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tgz && \
+tar xzvf /tmp/tomcat.tgz -C /opt && \
+mv /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat && \
+rm /tmp/tomcat.tgz && \
+rm -rf /opt/tomcat/webapps/examples && \
+rm -rf /opt/tomcat/webapps/docs && \
+rm -rf /opt/tomcat/webapps/ROOT
+
+# Add admin/admin user
+#ADD tomcat-users.xml /opt/tomcat/conf/
+
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $PATH:$CATALINA_HOME/bin
+
+EXPOSE 8080
+EXPOSE 8009
+VOLUME "/opt/tomcat/webapps"
+
 # clean
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
 
 WORKDIR /data
-EXPOSE 8080
 CMD ["bash"]
