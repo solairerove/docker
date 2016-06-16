@@ -11,7 +11,6 @@ ENV TOMCAT_VERSION 8.0.35
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
 RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
-#RUN apt-get upgrade -y
 
 # install dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
