@@ -12,7 +12,7 @@ ___
 * `docker attach name-of-container`
 * `docker start name-of-container`
 * `docker stop name-of-container`
-* `docker rm name-of-container`
+* `docker rm name-of-container1 name-of-container2 ...`
 * `docker rmi -f name-of-image`
 * `docker ps`
 * `docker ps -a`
@@ -27,6 +27,8 @@ ___
 * `openssh-client`
 * `nano`
 * `curl`
+* `wget`
+* `unzip`
 * `software-properties-common`
 * `python-software-properties`
 * `oracle jdk 8`
