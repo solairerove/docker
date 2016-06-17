@@ -5,7 +5,6 @@ MAINTAINER "Nikita Krivitski" <hax2033@gmail.com>
 # set versions
 ENV DEBIAN_FRONTEND noninteractive
 ENV MAVEN_VERSION 3.3.9
-ENV TOMCAT_VERSION 8.0.35
 
 # fuck off from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
@@ -20,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         nano \
         curl \
 	wget \
+	unzip \
 	software-properties-common \
 	python-software-properties \
 	supervisor
@@ -52,21 +52,16 @@ VOLUME /root/.m2
 
 CMD ["mvn"]
 
-# install tomcat 8
-RUN wget --quiet --no-cookies http://apache.rediris.es/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tgz && \
-tar xzvf /tmp/tomcat.tgz -C /opt && \
-mv /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat && \
-rm /tmp/tomcat.tgz && \
-rm -rf /opt/tomcat/webapps/examples && \
-rm -rf /opt/tomcat/webapps/docs && \
-rm -rf /opt/tomcat/webapps/ROOT
+# install liferay
+RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Liferay%20Portal/6.2.3%20GA4/liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip \
+	&& unzip liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip -d /opt \
+	&& rm liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip
 
-ENV CATALINA_HOME /opt/tomcat
-ENV PATH $PATH:$CATALINA_HOME/bin
+# add config for bdd
+RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-${DB_TYPE}.properties"' >> /opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/bin/setenv.sh
 
-EXPOSE 8080
-EXPOSE 8009
-VOLUME "/opt/tomcat/webapps"
+# add configuration liferay file
+# ADD lep/portal-bundle.properties /opt/liferay-portal-6.2-ce-ga4/portal-bundle.properties
 
 # clean
 RUN rm -rf /var/lib/apt/lists/*
