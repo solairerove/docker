@@ -68,6 +68,11 @@ EXPOSE 8080
 EXPOSE 8009
 VOLUME "/opt/tomcat/webapps"
 
+# install liferay
+RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Liferay%20Portal/6.2.3%20GA4/liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip \
+	&& unzip liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip -d /opt \
+	&& rm liferay-portal-tomcat-6.2-ce-ga4-20150416163831865.zip
+
 # clean
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
