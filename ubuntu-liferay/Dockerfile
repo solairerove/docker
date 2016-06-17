@@ -60,9 +60,6 @@ RUN curl -O -s -k -L -C - http://downloads.sourceforge.net/project/lportal/Lifer
 # add config for bdd
 RUN /bin/echo -e '\nCATALINA_OPTS="$CATALINA_OPTS -Dexternal-properties=portal-bd-${DB_TYPE}.properties"' >> /opt/liferay-portal-6.2-ce-ga4/tomcat-7.0.42/bin/setenv.sh
 
-# add configuration liferay file
-# ADD lep/portal-bundle.properties /opt/liferay-portal-6.2-ce-ga4/portal-bundle.properties
-
 # clean
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean

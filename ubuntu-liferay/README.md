@@ -33,4 +33,4 @@ ___
 * `python-software-properties`
 * `oracle jdk 8`
 * `apache maven 3.3.9`
-* `liferay in process`
+* `liferay 6.2`
