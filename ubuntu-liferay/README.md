@@ -17,6 +17,7 @@ ___
 * `docker ps`
 * `docker ps -a`
 * `docker ps -l`
+* `docker exec -it [container-id] bash`
 
 ___ 
 
