@@ -18,6 +18,7 @@ ___
 * `docker ps -a`
 * `docker ps -l`
 * `docker exec -it [container-id] bash`
+* `tail -f -n 100 ./catalina.out`
 
 ___ 
 
