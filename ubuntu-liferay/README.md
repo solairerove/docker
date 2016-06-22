@@ -19,6 +19,7 @@ ___
 * `docker ps -l`
 * `docker exec -it [container-id] bash`
 * `tail -f -n 100 ./catalina.out`
+* `scp name-of-host@host:/folder/*.war /folder`
 
 ___ 
 
