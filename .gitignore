@@ -2,3 +2,16 @@
 Dockerfile.save
 ..gitignore.swp
 .README.md.swp
+
+# Directory-based project format:
+.idea/
+classes/
+
+# File-based project format:
+*.iml
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
