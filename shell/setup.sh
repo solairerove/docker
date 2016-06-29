@@ -11,8 +11,8 @@ tar -xf jdk-8u92-linux-x64.tar.gz -C /usr/lib/jvm/
 
 update-alternatives --remove-all javac
 update-alternatives --remove-all java
-update-alternatives --set /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_92/bin/javac 1
-update-alternatives --set /usr/bin/java java /usr/lib/jvm/jdk1.8.0_92/bin/java 1
+update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.8.0_92/bin/javac 1
+update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_92/bin/java 1
 update-alternatives --config javac
 update-alternatives --config java
 
