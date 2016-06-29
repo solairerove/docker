@@ -16,15 +16,15 @@
 #tar -xf apache-maven-3.3.9-bin.tar.gz -C /opt/
 #rm apache-maven-3.3.9-bin.tar.gz
 
-# install tomcat 8.0.35
+# install tomcat 8.0.36
 
-wget --quiet --no-cookies \ 
-http://apache.rediris.es/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz
+wget --quiet --no-cookies \
+http://www-us.apache.org/dist/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz
 
-#tar -xf *.tar.gz -C /opt/
-#rm *.tar.gz
-#rm -rf /opt/tomcat/webapps/examples
-#rm -rf /opt/tomcat/webapps/docs
+tar -xf apache-tomcat-8.0.36.tar.gz -C /opt/
+#rm apache-tomcat-8.0.36.tar.gz
+rm -rf /opt/apache-tomcat-8.0.36/webapps/examples
+rm -rf /opt/apache-tomcat-8.0.36/webapps/docs
 
 # export variables
 
