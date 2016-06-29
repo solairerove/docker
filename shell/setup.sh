@@ -21,10 +21,10 @@
 wget --quiet --no-cookies \
 http://www-us.apache.org/dist/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz
 
-tar -xf apache-tomcat-8.0.36.tar.gz -C /opt/
+#tar -xf apache-tomcat-8.0.36.tar.gz -C /opt/
 #rm apache-tomcat-8.0.36.tar.gz
-rm -rf /opt/apache-tomcat-8.0.36/webapps/examples
-rm -rf /opt/apache-tomcat-8.0.36/webapps/docs
+#rm -rf /opt/apache-tomcat-8.0.36/webapps/examples
+#rm -rf /opt/apache-tomcat-8.0.36/webapps/docs
 
 # export variables
 
