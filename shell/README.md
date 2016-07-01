@@ -1,4 +1,4 @@
-##### Preinstall shel for linuz:
+##### Preinstall shell script for linux:
 
 ```shell
 ./setup.sh
