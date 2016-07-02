@@ -92,6 +92,12 @@ wget http://download.virtualbox.org/virtualbox/5.0.24/virtualbox-5.0_5.0.24-1083
 dpkg -i virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 rm -f google-chrome-stable_current_amd64.deb
 
+# install node and npm
+
+apt-get install -y build-essential libssl-dev
+apt-get install -y nodejs
+apt-get install -y npm
+
 # install Intellij IDEA
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
