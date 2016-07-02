@@ -79,6 +79,13 @@ git config --global user.email $GIT_EMAIL
 
 apt-get install -y skype
 
+# install chrome
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg -i google-chrome-stable_current_amd64.deb
+apt-get -f install -y
+rm -f google-chrome-stable_current_amd64.deb
+
 # install Intellij IDEA
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
