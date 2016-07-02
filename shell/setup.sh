@@ -48,6 +48,23 @@ rm -f /etc/profile.d/variables.sh
 cp variables.sh /etc/profile.d/
 rm -f variables.sh
 
+# install docker
+
+apt-get install -y apt-transport-https ca-certificates
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+rm /etc/apt/sources.list.d/docker.list
+touch /etc/apt/sources.list.d/docker.list
+echo deb https://apt.dockerproject.org/repo ubuntu-xenial main >> /etc/apt/sources.list.d/docker.list 
+apt-get update
+apt-get purge lxc-docker
+apt-cache policy docker-engine
+apt-get install -y docker-engine
+service docker start
+
+groupadd docker
+usermod -aG docker $(whoami)
+
 # install Intellij IDEA
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
