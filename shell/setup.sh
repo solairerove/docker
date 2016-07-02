@@ -75,6 +75,10 @@ apt-get install -y git
 git config --global user.name "$GIT_NAME"
 git config --global user.email $GIT_EMAIL
 
+# install skype
+
+apt-get install -y skype
+
 # install Intellij IDEA
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
