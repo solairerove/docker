@@ -90,7 +90,7 @@ rm -f google-chrome-stable_current_amd64.deb
 
 wget http://download.virtualbox.org/virtualbox/5.0.24/virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 dpkg -i virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
-rm -f google-chrome-stable_current_amd64.deb
+rm -f virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 
 # install node and npm
 
