@@ -96,7 +96,12 @@ rm -f google-chrome-stable_current_amd64.deb
 
 apt-get install -y build-essential libssl-dev
 apt-get install -y nodejs
+ln -s /usr/bin/nodejs /usr/bin/node
 apt-get install -y npm
+
+# install gulp
+
+npm install -g gulp
 
 # install Intellij IDEA
 
