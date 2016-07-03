@@ -120,3 +120,9 @@ chmod +x ~/soft/idea-IU-145.1617.8/bin/idea.sh
 # install audacious
 
 apt-get install -y audacious
+
+# install gitkraken
+
+wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+dpkg -i gitkraken-amd64.deb
+rm -f gitkraken-amd64.deb
