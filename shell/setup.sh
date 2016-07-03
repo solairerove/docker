@@ -134,3 +134,11 @@ tar -xf apache-jmeter-3.0.tgz -C ~/soft/
 rm apache-jmeter-3.0.tgz
 
 chmod +x ~/soft/apache-jmeter-3.0/bin/jmeter.sh
+
+# install apache directory studio
+
+APACHE_STUDIO=ApacheDirectoryStudio-2.0.0.v20151221-M10-linux.gtk.x86_64.tar.gz
+
+wget http://ftp.byfly.by/pub/apache.org/directory/studio/2.0.0.v20151221-M10/$APACHE_STUDIO
+tar -xf $APACHE_STUDIO -C ~/soft/
+rm $APACHE_STUDIO
