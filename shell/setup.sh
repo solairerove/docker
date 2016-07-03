@@ -126,3 +126,11 @@ apt-get install -y audacious
 wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
 dpkg -i gitkraken-amd64.deb
 rm -f gitkraken-amd64.deb
+
+# install apache jmeter
+
+wget http://ftp.byfly.by/pub/apache.org//jmeter/binaries/apache-jmeter-3.0.tgz
+tar -xf apache-jmeter-3.0.tgz -C ~/soft/
+rm apache-jmeter-3.0.tgz
+
+chmod +x ~/soft/apache-jmeter-3.0/bin/jmeter.sh
