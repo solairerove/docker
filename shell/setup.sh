@@ -103,6 +103,10 @@ apt-get install -y npm
 
 npm install -g gulp
 
+# install typescript
+
+npm install -g typescript
+
 # install Intellij IDEA
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
