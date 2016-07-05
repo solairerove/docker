@@ -13,4 +13,4 @@ ___
 ##### Shell for preinstall:
 
 
-*setup.sh* - in process
+*[setup.sh](https://github.com/solairerove/docker/tree/master/shell)* - for debian like distributions
