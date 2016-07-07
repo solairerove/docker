@@ -56,7 +56,7 @@ service docker start
 groupadd docker
 usermod -aG docker $(whoami)
 
-printf "${RED} <== install git ${NC} ==> \n"
+printf "${RED} <== install git ==> ${NC} \n"
 
 GIT_NAME="Nikita Krivitski"
 GIT_EMAIL="hax2033@gmail.com"
@@ -66,39 +66,39 @@ apt-get install -y git
 git config --global user.name "$GIT_NAME"
 git config --global user.email $GIT_EMAIL
 
-printf "${RED} <== install skype ${NC} ==> \n"
+printf "${RED} <== install skype ==> ${NC} \n"
 
 apt-get install -y skype
 
-printf "${RED} <== install chrome ${NC} ==> \n"
+printf "${RED} <== install chrome ==> ${NC} \n"
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
 apt-get -f install -y
 rm -f google-chrome-stable_current_amd64.deb
 
-printf "${RED} <== install virtual box ${NC} ==> \n"
+printf "${RED} <== install virtual box ==> ${NC} \n"
 
 wget http://download.virtualbox.org/virtualbox/5.0.24/virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 dpkg -i virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 rm -f virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 
-printf "${RED} <== install node and npm ${NC} ==> \n"
+printf "${RED} <== install node and npm ==> ${NC} \n"
 
 apt-get install -y build-essential libssl-dev
 apt-get install -y nodejs
 ln -s /usr/bin/nodejs /usr/bin/node
 apt-get install -y npm
 
-printf "${RED} <== install gulp ${NC} ==> \n"
+printf "${RED} <== install gulp ==> ${NC} \n"
 
 npm install -g gulp
 
-printf "${RED} <== install typescript ${NC} ==> \n"
+printf "${RED} <== install typescript ==> ${NC} \n"
 
 npm install -g typescript
 
-printf "${RED} <== install Intellij IDEA ${NC} ==> \n"
+printf "${RED} <== install Intellij IDEA ==> ${NC} \n"
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
 
@@ -109,17 +109,17 @@ rm ideaIU-2016.1.3.tar.gz
 chmod +x ~/soft/idea-IU-145.1617.8/bin/idea.sh
 sed -i '2s/.*/-Xmx2048m/' ~/soft/idea-IU-145.1617.8/bin/idea64.vmoptions
 
-printf "${RED} <== install audacious ${NC} ==> \n"
+printf "${RED} <== install audacious ==> ${NC} \n"
 
 apt-get install -y audacious
 
-printf "${RED} <== install gitkraken ${NC} ==> \n"
+printf "${RED} <== install gitkraken ==> ${NC} \n"
 
 wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
 dpkg -i gitkraken-amd64.deb
 rm -f gitkraken-amd64.deb
 
-printf "${RED} <== install apache jmeter ${NC} ==> \n"
+printf "${RED} <== install apache jmeter ==> ${NC} \n"
 
 wget http://ftp.byfly.by/pub/apache.org//jmeter/binaries/apache-jmeter-3.0.tgz
 tar -xf apache-jmeter-3.0.tgz -C ~/soft/
@@ -127,7 +127,7 @@ rm apache-jmeter-3.0.tgz
 
 chmod +x ~/soft/apache-jmeter-3.0/bin/jmeter.sh
 
-printf "${RED} <== install apache directory studio ${NC} ==> \n"
+printf "${RED} <== install apache directory studio ==> ${NC} \n"
 
 APACHE_STUDIO=ApacheDirectoryStudio-2.0.0.v20151221-M10-linux.gtk.x86_64.tar.gz
 
@@ -135,15 +135,15 @@ wget http://ftp.byfly.by/pub/apache.org/directory/studio/2.0.0.v20151221-M10/$AP
 tar -xf $APACHE_STUDIO -C ~/soft/
 rm $APACHE_STUDIO
 
-printf "${RED} <== install mc ${NC} ==> \n"
+printf "${RED} <== install mc  ==> ${NC} \n"
 
 apt-get install -y mc
 
-printf "${RED} <== install guake ${NC} ==> \n"
+printf "${RED} <== install guake ==> ${NC} \n"
 
 apt-get install -y guake
 
-printf "${RED} <== export variables ${NC} ==> \n"
+printf "${RED} <== export variables  ==> ${NC} \n"
 
 rm -f variables.sh
 touch variables.sh
