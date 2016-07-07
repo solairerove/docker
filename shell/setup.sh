@@ -36,18 +36,6 @@ rm -rf /opt/apache-tomcat-8.0.36/webapps/docs
 chown -R $(whoami) /opt/apache-tomcat-8.0.36/
 chmod -R 777 /opt/apache-tomcat-8.0.36/
 
-# export variables
-
-rm -f variables.sh
-touch variables.sh
-
-echo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_92 >> variables.sh
-echo export PATH=/opt/apache-maven-3.3.9/bin:$PATH >> variables.sh
-
-rm -f /etc/profile.d/variables.sh
-cp variables.sh /etc/profile.d/
-rm -f variables.sh
-
 # install docker
 
 apt-get install -y apt-transport-https ca-certificates
@@ -151,3 +139,18 @@ apt-get install -y mc
 # install guake
 
 apt-get install -y guake
+
+# export variables
+
+rm -f variables.sh
+touch variables.sh
+
+echo export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_92 >> variables.sh
+echo export JMETER_HOME=~/soft/apache-jmeter-3.0 >> variables.sh
+
+echo export PATH=/opt/apache-maven-3.3.9/bin:$PATH >> variables.sh
+echo export PATH=~/soft/apache-jmeter-3.0/bin:$PATH >> variables.sh
+
+rm -f /etc/profile.d/variables.sh
+cp variables.sh /etc/profile.d/
+rm -f variables.sh
