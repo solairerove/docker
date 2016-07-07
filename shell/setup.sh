@@ -143,3 +143,7 @@ APACHE_STUDIO=ApacheDirectoryStudio-2.0.0.v20151221-M10-linux.gtk.x86_64.tar.gz
 wget http://ftp.byfly.by/pub/apache.org/directory/studio/2.0.0.v20151221-M10/$APACHE_STUDIO
 tar -xf $APACHE_STUDIO -C ~/soft/
 rm $APACHE_STUDIO
+
+# install mc
+
+apt-get install -y mc
