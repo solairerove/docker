@@ -41,20 +41,12 @@ chmod -R 777 /opt/apache-tomcat-8.0.36/
 
 printf "${RED} <== install docker ==> ${NC} \n"
 
-apt-get install -y apt-transport-https ca-certificates
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+wget -qO- https://get.docker.com/ | sh
 
-rm -f /etc/apt/sources.list.d/docker.list
-touch /etc/apt/sources.list.d/docker.list
-echo deb https://apt.dockerproject.org/repo ubuntu-xenial main >> /etc/apt/sources.list.d/docker.list 
-apt-get update
-apt-get purge lxc-docker
-apt-cache policy docker-engine
-apt-get install -y docker-engine
-service docker start
+printf "${RED} <== install docker-compose ==> ${NC} \n"
 
-groupadd docker
-usermod -aG docker $(whoami)
+curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 printf "${RED} <== install git ==> ${NC} \n"
 
