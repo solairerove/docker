@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# install jdk-8u92
+RED='\033[0;31m'
+NC='\033[0m'
+
+printf "${RED} <== install jdk-8u92 ==> ${NC} \n"
 
 wget --no-check-certificate --no-cookies --header \
 "Cookie: oraclelicense=accept-securebackup-cookie" \
@@ -16,14 +19,14 @@ update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_92/bin/ja
 update-alternatives --config javac
 update-alternatives --config java
 
-# install maven 3.3.9
+printf "${RED} <== install maven 3.3.9 ==> ${NC} \n"
 
 wget http://apache.osuosl.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 
 tar -xf apache-maven-3.3.9-bin.tar.gz -C /opt/
 rm apache-maven-3.3.9-bin.tar.gz
 
-# install tomcat 8.0.36
+printf "${RED} <== install tomcat 8.0.36 ==> ${NC} \n"
 
 wget --quiet --no-cookies \
 http://www-us.apache.org/dist/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz
@@ -36,7 +39,7 @@ rm -rf /opt/apache-tomcat-8.0.36/webapps/docs
 chown -R $(whoami) /opt/apache-tomcat-8.0.36/
 chmod -R 777 /opt/apache-tomcat-8.0.36/
 
-# install docker
+printf "${RED} <== install docker ==> ${NC} \n"
 
 apt-get install -y apt-transport-https ca-certificates
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -53,7 +56,7 @@ service docker start
 groupadd docker
 usermod -aG docker $(whoami)
 
-# install git
+printf "${RED} <== install git ${NC} ==> \n"
 
 GIT_NAME="Nikita Krivitski"
 GIT_EMAIL="hax2033@gmail.com"
@@ -63,39 +66,39 @@ apt-get install -y git
 git config --global user.name "$GIT_NAME"
 git config --global user.email $GIT_EMAIL
 
-# install skype
+printf "${RED} <== install skype ${NC} ==> \n"
 
 apt-get install -y skype
 
-# install chrome
+printf "${RED} <== install chrome ${NC} ==> \n"
 
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
 apt-get -f install -y
 rm -f google-chrome-stable_current_amd64.deb
 
-# install virtual box
+printf "${RED} <== install virtual box ${NC} ==> \n"
 
 wget http://download.virtualbox.org/virtualbox/5.0.24/virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 dpkg -i virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 rm -f virtualbox-5.0_5.0.24-108355~Ubuntu~xenial_amd64.deb
 
-# install node and npm
+printf "${RED} <== install node and npm ${NC} ==> \n"
 
 apt-get install -y build-essential libssl-dev
 apt-get install -y nodejs
 ln -s /usr/bin/nodejs /usr/bin/node
 apt-get install -y npm
 
-# install gulp
+printf "${RED} <== install gulp ${NC} ==> \n"
 
 npm install -g gulp
 
-# install typescript
+printf "${RED} <== install typescript ${NC} ==> \n"
 
 npm install -g typescript
 
-# install Intellij IDEA
+printf "${RED} <== install Intellij IDEA ${NC} ==> \n"
 
 wget https://download.jetbrains.com/idea/ideaIU-2016.1.3.tar.gz
 
@@ -106,17 +109,17 @@ rm ideaIU-2016.1.3.tar.gz
 chmod +x ~/soft/idea-IU-145.1617.8/bin/idea.sh
 sed -i '2s/.*/-Xmx2048m/' ~/soft/idea-IU-145.1617.8/bin/idea64.vmoptions
 
-# install audacious
+printf "${RED} <== install audacious ${NC} ==> \n"
 
 apt-get install -y audacious
 
-# install gitkraken
+printf "${RED} <== install gitkraken ${NC} ==> \n"
 
 wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
 dpkg -i gitkraken-amd64.deb
 rm -f gitkraken-amd64.deb
 
-# install apache jmeter
+printf "${RED} <== install apache jmeter ${NC} ==> \n"
 
 wget http://ftp.byfly.by/pub/apache.org//jmeter/binaries/apache-jmeter-3.0.tgz
 tar -xf apache-jmeter-3.0.tgz -C ~/soft/
@@ -124,7 +127,7 @@ rm apache-jmeter-3.0.tgz
 
 chmod +x ~/soft/apache-jmeter-3.0/bin/jmeter.sh
 
-# install apache directory studio
+printf "${RED} <== install apache directory studio ${NC} ==> \n"
 
 APACHE_STUDIO=ApacheDirectoryStudio-2.0.0.v20151221-M10-linux.gtk.x86_64.tar.gz
 
@@ -132,15 +135,15 @@ wget http://ftp.byfly.by/pub/apache.org/directory/studio/2.0.0.v20151221-M10/$AP
 tar -xf $APACHE_STUDIO -C ~/soft/
 rm $APACHE_STUDIO
 
-# install mc
+printf "${RED} <== install mc ${NC} ==> \n"
 
 apt-get install -y mc
 
-# install guake
+printf "${RED} <== install guake ${NC} ==> \n"
 
 apt-get install -y guake
 
-# export variables
+printf "${RED} <== export variables ${NC} ==> \n"
 
 rm -f variables.sh
 touch variables.sh
