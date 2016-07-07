@@ -147,3 +147,7 @@ rm $APACHE_STUDIO
 # install mc
 
 apt-get install -y mc
+
+# install guake
+
+apt-get install -y guake
