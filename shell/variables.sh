@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_92
 export PATH=$JAVA_HOME/bin:$PATH
 

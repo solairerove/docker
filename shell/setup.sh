@@ -39,15 +39,6 @@ rm -rf /opt/apache-tomcat-8.0.36/webapps/docs
 chown -R $(whoami) /opt/apache-tomcat-8.0.36/
 chmod -R 777 /opt/apache-tomcat-8.0.36/
 
-printf "${RED} <== install docker ==> ${NC} \n"
-
-wget -qO- https://get.docker.com/ | sh
-
-printf "${RED} <== install docker-compose ==> ${NC} \n"
-
-curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
 printf "${RED} <== install git ==> ${NC} \n"
 
 GIT_NAME="Nikita Krivitski"
@@ -61,6 +52,7 @@ git config --global user.email $GIT_EMAIL
 printf "${RED} <== install skype ==> ${NC} \n"
 
 apt-get install -y skype
+cp ./startup/skype.desktop ~/.config/autostart/
 
 printf "${RED} <== install chrome ==> ${NC} \n"
 
@@ -134,6 +126,7 @@ apt-get install -y mc
 printf "${RED} <== install guake ==> ${NC} \n"
 
 apt-get install -y guake
+cp ./startup/guake.desktop ~/.config/autostart/
 
 printf "${RED} <== export variables  ==> ${NC} \n"
 
@@ -149,3 +142,13 @@ echo export PATH=~/soft/apache-jmeter-3.0/bin:$PATH >> variables.sh
 rm -f /etc/profile.d/variables.sh
 cp variables.sh /etc/profile.d/
 rm -f variables.sh
+
+printf "${RED} <== install docker-compose ==> ${NC} \n"
+
+curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+printf "${RED} <== install docker ==> ${NC} \n"
+
+wget -qO- https://get.docker.com/ | sh
+
