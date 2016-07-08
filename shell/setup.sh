@@ -126,6 +126,7 @@ apt-get install -y mc
 printf "${RED} <== install guake ==> ${NC} \n"
 
 apt-get install -y guake
+mkdir ~/.config/autostart/
 cp ./startup/guake.desktop ~/.config/autostart/
 
 printf "${RED} <== export variables  ==> ${NC} \n"
