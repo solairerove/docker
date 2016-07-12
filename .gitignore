@@ -1,7 +1,5 @@
-.Dockerfile.swp
-Dockerfile.save
-..gitignore.swp
-.README.md.swp
+*.save
+*.swp
 
 # Directory-based project format:
 .idea/
