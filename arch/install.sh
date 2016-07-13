@@ -70,7 +70,7 @@ systemctl start dhcpcd
 ping google.com -c 5
 
 #sudo users
-nano /etc/sudoers
+#/etc/sudoers
 krivitski-no ALL=(ALL) ALL
 
 #minimal xorg
@@ -88,13 +88,15 @@ pacman -S xfce4
 #pacman -Syu lightdm-gtk-greeter accountsservice
 #systemctl enable lightdm
 #systemctl enable accounts-daemon
+
 systemctl enable slim.service
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
-nano .xinitrc
+
+#.xinitrc
 #twm xclock xterm exec
 exec xfce4-session
 
-nano /etc/slim.conf
+#/etc/slim.conf
 current_theme archlinux-soft-grey
 #reboot
 
