@@ -29,7 +29,7 @@ pacman -Syu
 pacstrap /mnt grub-bios
 
 #fstab
-genfstab -U /mnt >> /mnt/etx/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 
 #change root
 arch-chroot /mnt /bin/bash
