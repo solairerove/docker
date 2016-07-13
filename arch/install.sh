@@ -78,7 +78,11 @@ pacman -S xorg
 pacman -S xterm xorg-xclock xorg-twm xorg-xinit xorg-server-utils
 
 #mate de
-pacman -Syu mate mate-extra
+#pacman -Syu mate mate-extra
+
+#xfce de
+pacman -S slim slim-themes archlinux-themes-slim xdg-user-dirs
+pacman -S xfce4
 
 #desktop manager
 pacman -Syu lightdm-gtk-greeter accountsservice
