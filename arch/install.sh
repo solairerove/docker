@@ -84,10 +84,18 @@ pacman -S xterm xorg-xclock xorg-twm xorg-xinit xorg-server-utils
 pacman -S slim slim-themes archlinux-themes-slim xdg-user-dirs
 pacman -S xfce4
 
-#desktop manager
-pacman -Syu lightdm-gtk-greeter accountsservice
-systemctl enable lightdm
-systemctl enable accounts-daemon
+#desktop manager mate
+#pacman -Syu lightdm-gtk-greeter accountsservice
+#systemctl enable lightdm
+#systemctl enable accounts-daemon
+systemctl enable slim.service
+cp /etc/X11/xinit/xinitrc ~/.xinitrc
+nano .xinitrc
+#twm xclock xterm exec
+exec xfce4-session
+
+nano /etc/slim.conf
+current_theme archlinux-soft-grey
 #reboot
 
 #net tools
