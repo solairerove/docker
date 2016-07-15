@@ -94,7 +94,7 @@ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
 #.xinitrc
 #twm xclock xterm exec
-exec xfce4-session
+exec startxfce4
 
 #/etc/slim.conf
 current_theme archlinux-soft-grey
@@ -126,6 +126,9 @@ pacman -S ibfonts-meta-extended-lt
 
 fc-presets set
 #3
+
+pacman -S xfce4-whiskermenu-plugin
+pacman -S numix
 
 #<============>
 
