@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#mate and xfce4
 lsblk
 
 #partition
