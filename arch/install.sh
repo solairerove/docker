@@ -6,21 +6,25 @@ lsblk
 cfdisk /dev/sda
 
 #file system
-mkfs.ext4 /dev/sda1
+mkfs.fat -F32 /dev/sda1
 
 mkswap /dev/sda2
 swapon /dev/sda2
 
 mkfs.ext4 /dev/sda3
 
-#mounting
-mkdir /mnt/boot /mnt/var /mnt/home
+mkfs.ext4 /dev/sda4
 
-mount /dev/sda3 /mnt
+#mounting
+mkdir /mnt/boot
+mkdir /mnt/home
+
 mount /dev/sda1 /mnt/boot
+mount /dev/sda3 /mnt
+mount /dev/sda4 /mnt/home
 
 #base install
-pacstrap -i /mnt base base-devel
+pacstrap -i /mnt base base-devel grub-efi-x86_64 efibootmgr
 
 #update
 pacman -Syu
