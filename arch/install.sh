@@ -1,9 +1,10 @@
 #!/bin/bash
-#mate and xfce4
+#xfce4
 lsblk
 
 #partition
-cfdisk /dev/sda
+#gdisk x z
+cgdisk /dev/sda
 
 #file system
 mkfs.fat -F32 /dev/sda1
@@ -28,9 +29,6 @@ pacstrap -i /mnt base base-devel grub-efi-x86_64 efibootmgr
 
 #update
 pacman -Syu
-
-#grub
-pacstrap /mnt grub-bios
 
 #fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -64,7 +62,7 @@ useradd -m -g users -G wheel -s /bin/bash krivitski-no
 passwd krivitski-no
 
 #grub install
-grub-install /dev/sda
+grub-install --target=x86_64-efi --efi-directory=/boot/ --bootlader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 #reboot
 
@@ -81,23 +79,13 @@ krivitski-no ALL=(ALL) ALL
 pacman -S xorg
 pacman -S xterm xorg-xclock xorg-twm xorg-xinit xorg-server-utils
 
-#mate de
-#pacman -Syu mate mate-extra
-
 #xfce de
 pacman -S slim slim-themes archlinux-themes-slim xdg-user-dirs
 pacman -S xfce4
 
-#desktop manager mate
-#pacman -Syu lightdm-gtk-greeter accountsservice
-#systemctl enable lightdm
-#systemctl enable accounts-daemon
-
 systemctl enable slim.service
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
-#.xinitrc
-#twm xclock xterm exec
 exec startxfce4
 
 #/etc/slim.conf
@@ -134,10 +122,7 @@ fc-presets set
 pacman -S xfce4-whiskermenu-plugin
 pacman -S numix
 
-#<============>
-
-RED='\033[0;31m'
-NC='\033[0m'
+#============
 
 wget --no-check-certificate --no-cookies --header \
 "Cookie: oraclelicense=accept-securebackup-cookie" \
