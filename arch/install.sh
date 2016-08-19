@@ -3,32 +3,24 @@
 lsblk
 
 #partition
-#gdisk x z
-cgdisk /dev/sda
+cfdisk /dev/sda
 
-#file system
-mkfs.fat -F32 /dev/sda1
+mkfs.vfat /dev/sda1
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 
 mkswap /dev/sda2
 swapon /dev/sda2
 
 mkfs.ext4 /dev/sda3
+mount /dev/sda3 /mnt
 
 mkfs.ext4 /dev/sda4
-
-#mounting
-mkdir /mnt/boot
-mkdir /mnt/home
-
-mount /dev/sda1 /mnt/boot
-mount /dev/sda3 /mnt
+mkdir -p /mnt/home
 mount /dev/sda4 /mnt/home
 
 #base install
-pacstrap -i /mnt base base-devel grub-efi-x86_64 efibootmgr
-
-#update
-pacman -Syu
+pacstrap -i /mnt base base-devel grub efibootmgr
 
 #fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -62,8 +54,10 @@ useradd -m -g users -G wheel -s /bin/bash krivitski-no
 passwd krivitski-no
 
 #grub install
-grub-install --target=x86_64-efi --efi-directory=/boot/ --bootlader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
+grub-install /dev/sda
+# not save this shit, reboot only
+
 #reboot
 
 #enable dhcpcd
