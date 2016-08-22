@@ -12,6 +12,7 @@ ___
 
 ```shell
 docker attach name-of-container
+docker exec -it jenkins_jenkins_1 /bin/bash
 docker start name-of-container
 docker stop name-of-container
 docker rm name-of-container1 name-of-container2 ...
