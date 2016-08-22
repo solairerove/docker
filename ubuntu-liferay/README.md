@@ -13,6 +13,7 @@ ___
 ```shell
 docker attach name-of-container
 docker exec -u root -it [container_id] bash
+export TERM=xterm (nano)
 docker exec -it jenkins_jenkins_1 /bin/bash
 docker start name-of-container
 docker stop name-of-container
