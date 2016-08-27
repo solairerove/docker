@@ -1,8 +1,8 @@
 #!/bin/bash
-#xfce4
+# xfce4
 lsblk
 
-#partition
+# partition
 cfdisk /dev/sda
 
 mkfs.vfat /dev/sda1
@@ -19,78 +19,79 @@ mkfs.ext4 /dev/sda4
 mkdir -p /mnt/home
 mount /dev/sda4 /mnt/home
 
-#base install
+# base install
 pacstrap -i /mnt base base-devel grub efibootmgr
+# grub-mkconfig -o /boot/grub/grub.cfg
+# grub-install --target=x86_64-efi --efi-directory=/mnt/boot/efi --bootloader-id=arch --recheck
 
-#fstab
+# fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 
-#change root
+# change root
 arch-chroot /mnt /bin/bash
 
-#locale
-#uncomment en_US.UTF-8 UTF-8 in /etc/locale.gen
+# locale
+# uncomment en_US.UTF-8 UTF-8 in /etc/locale.gen
 locale-gen
 echo LANG=en_US.UTF8 >> /etc/locale.conf
 
-#time
+# time
 tzselect
 ln -s /usr/share/zoneinfo/Zone/SubZone /etc/localtime
 
-#initramfs
+# initramfs
 mkinitcpio -p linux
 
-#hostname
+# hostname
 echo myhostname > /etc/hostname
-#/etc/hosts
-#127.0.0.1	localhost.localdomain	localhost	 myhostname
-#::1		localhost.localdomain	localhost	 myhostname
+# /etc/hosts
+# 127.0.0.1	localhost.localdomain	localhost	 myhostname
+# ::1		localhost.localdomain	localhost	 myhostname
 
-#root password
+# root password
 passwd root
 
-#add user
+# add user
 useradd -m -g users -G wheel -s /bin/bash krivitski-no
 passwd krivitski-no
 
-#grub install
+# grub install
+# mkdir -p /boot/efi
+# mount -t vfat /dev/sda1 /boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 grub-install /dev/sda
-# not save this shit, reboot only
+# reboot
 
-#reboot
-
-#enable dhcpcd
+# enable dhcpcd
 systemctl enable dhcpcd
 systemctl start dhcpcd
 ping google.com -c 5
 
-#sudo users
+# sudo users
 #/etc/sudoers
 krivitski-no ALL=(ALL) ALL
 
-#minimal xorg
+# minimal xorg
 pacman -S xorg
 pacman -S xterm xorg-xclock xorg-twm xorg-xinit xorg-server-utils
 
-#xfce de
+# xfce de
 pacman -S slim slim-themes archlinux-themes-slim xdg-user-dirs
 pacman -S xfce4
 
 systemctl enable slim.service
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
 
-exec startxfce4
+# uncomment exec startxfce4
 
-#/etc/slim.conf
+# /etc/slim.conf
 current_theme archlinux-soft-grey
-#reboot
+# reboot
 
-#net tools
+# net tools
 sudo pacman -Syy net-tools gtkmm
 
-#vb guest additions
-sudo pacman -S virtualbox-guest-utils
+# finis
 
 #/etc/pacman.conf
 #[infinality-bundle]
