@@ -10,3 +10,11 @@ ___
 ##### Shell for preinstall:
 
 *[setup.sh](https://github.com/solairerove/docker/tree/master/shell)* - for debian like distributions
+
+___
+
+##### Arch Linux world:
+
+*[install.sh](https://github.com/solairerove/docker/blob/master/arch/install.sh)* - installation steps
+
+*[environment.sh](https://github.com/solairerove/docker/blob/master/arch/environment.sh)* - in future...
