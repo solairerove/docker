@@ -52,7 +52,7 @@ echo myhostname > /etc/hostname
 passwd root
 
 # add user
-useradd -m -g users -G wheel -s /bin/bash krivitski-no
+useradd -m -g users -G wheel,storage,power -s /bin/bash krivitski-no
 passwd krivitski-no
 
 # grub install
@@ -68,8 +68,9 @@ systemctl start dhcpcd
 ping google.com -c 5
 
 # sudo users
-#/etc/sudoers
-krivitski-no ALL=(ALL) ALL
+# /etc/sudoers
+# krivitski-no ALL=(ALL) ALL pfff...
+# uncomment wheel shit
 
 # minimal xorg
 pacman -S xorg
