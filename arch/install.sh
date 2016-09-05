@@ -1,31 +1,38 @@
 #!/bin/bash
-# xfce4
-lsblk
+# lsblk
 
 # partition
 cfdisk /dev/sda
 
+# formatting
 mkfs.vfat /dev/sda1
-mkdir -p /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
 
 mkswap /dev/sda2
 swapon /dev/sda2
 
 mkfs.ext4 /dev/sda3
-mount /dev/sda3 /mnt
 
 mkfs.ext4 /dev/sda4
+
+# mounting
+mount /dev/sda3 /mnt
+
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
+
 mkdir -p /mnt/home
 mount /dev/sda4 /mnt/home
 
+# choose closest mirrors
+pacman -Sy
+pacman -S reflector
+reflector --verbose -l 5 --sort rate --save /etc/pacman.d/mirrorlist
+
 # base install
-pacstrap -i /mnt base base-devel grub efibootmgr
-# grub-mkconfig -o /boot/grub/grub.cfg
-# grub-install --target=x86_64-efi --efi-directory=/mnt/boot/efi --bootloader-id=arch --recheck
+pacstrap -i /mnt base base-devel
 
 # fstab
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
 
 # change root
 arch-chroot /mnt /bin/bash
@@ -35,62 +42,56 @@ arch-chroot /mnt /bin/bash
 locale-gen
 echo LANG=en_US.UTF8 >> /etc/locale.conf
 
-# time
+# set local time
 tzselect
 ln -s /usr/share/zoneinfo/Zone/SubZone /etc/localtime
+hwclock --sysohc --utc
 
-# initramfs
-mkinitcpio -p linux
-
-# hostname
+# set hostname
 echo myhostname > /etc/hostname
 # /etc/hosts
 # 127.0.0.1	localhost.localdomain	localhost	 myhostname
 # ::1		localhost.localdomain	localhost	 myhostname
 
-# root password
-passwd root
+# add multilib
+# uncomment multilib in /etc/pacman.conf
+pacman -Sy
+
+# change root password
+passwd
+pacman -S sudo bash-completion
 
 # add user
 useradd -m -g users -G wheel,storage,power -s /bin/bash krivitski-no
 passwd krivitski-no
+# uncomment wheel ALL=(ALL)ALL
 
 # grub install
-# mkdir -p /boot/efi
-# mount -t vfat /dev/sda1 /boot/efi
+mkinitcpio -p linux
+pacman -S grub os-prober efibootmgr
 grub-mkconfig -o /boot/grub/grub.cfg
 grub-install /dev/sda
+# exit
+# umount -R /mnt
 # reboot
 
 # enable dhcpcd
-systemctl enable dhcpcd
-systemctl start dhcpcd
+sudo systemctl enable dhcpcd
+sudo systemctl start dhcpcd
 ping google.com -c 5
 
-# sudo users
-# /etc/sudoers
-# krivitski-no ALL=(ALL) ALL pfff...
-# uncomment wheel shit
-
 # minimal xorg
-pacman -S xorg
-pacman -S xterm xorg-xclock xorg-twm xorg-xinit xorg-server-utils
+sudo pacman -S xorg
+sudo pacman -S xterm xorg-xclock xorg-twm xorg-xinit xorg-server-utils
 
 # xfce de
-pacman -S slim slim-themes archlinux-themes-slim xdg-user-dirs
-pacman -S xfce4
+sudo pacman -S lightdm lightdm-gtk-greeter xdg-user-dirs
+sudo pacman -S xfce4 xfce4-goodies
 
-systemctl enable slim.service
+systemctl enable lightdm.service
 cp /etc/X11/xinit/xinitrc ~/.xinitrc
-
-# uncomment exec startxfce4
-
-# /etc/slim.conf
-current_theme archlinux-soft-grey
-# reboot
-
-# net tools
-sudo pacman -Syy net-tools gtkmm
+# stay alive foreach shit
+# exec startxfce4
 
 # souund troubleshooting
 sudo pacman -S pulseaudio
