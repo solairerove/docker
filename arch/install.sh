@@ -93,10 +93,6 @@ cp /etc/X11/xinit/xinitrc ~/.xinitrc
 # stay alive foreach shit
 # exec startxfce4
 
-# souund troubleshooting
-sudo pacman -S pulseaudio
-pulseaudio --start
-
 # finish
 
 #/etc/pacman.conf
