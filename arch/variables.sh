@@ -9,6 +9,3 @@ export PATH=$M2:$PATH
 
 export CATALINA_HOME=/opt/apache-tomcat-8.0.36
 export PATH=$CATALINA_HOME/bin:$PATH
-
-export JMETER_HOME=~/soft/apache-jmeter-3.0
-export PATH=$JMETER_HOME/bin:$PATH
