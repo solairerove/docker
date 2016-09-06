@@ -27,4 +27,6 @@ ___
 
 *[yaourt.sh](https://github.com/solairerove/docker/blob/master/arch/yaourt.sh)* - yaourt install
 
+*[git.sh]()* - git install and ssh configuration
+
 *[global.sh]()* - in process... 
