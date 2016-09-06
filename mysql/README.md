@@ -1,10 +1,11 @@
 ##### [MySQL](https://hub.docker.com/_/mysql/) image for docker:
 
-```docker pull mysql``` - download image
-```docker run --name mysql-latest -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqldb_pass -p 3306:3306 -d mysql:latest```
-```docker exec -it mysql-latest bash``` - allows you to run commands inside a Docker container
-```mysql -u root -p``` - to log in as the root user
-
+```shell
+docker pull mysql
+docker run --name mysql-latest -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqldb_pass -p 3306:3306 -d mysql:latest
+docker exec -it mysql-latest bash
+mysql -u root -p
+```
 ___
 
 ##### Create new db and access user:
