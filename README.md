@@ -15,7 +15,7 @@ ___
 
 ___
 
-##### Arch Linux world:
+Arch Linux world *frozen*:
 
 *[install.sh](https://github.com/solairerove/docker/blob/master/arch/install.sh)* - installation steps and xfce4 de install
 
