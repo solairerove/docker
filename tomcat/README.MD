@@ -20,5 +20,5 @@ ___
 
 ```bash
 docker pull tomcat
-docker run --name tomcat-latest -it -p 8991:8080 -d tomcat:latest
+docker run --name tomcat-latest -it -p 8991:8080 -v /my/own/datadir:/usr/local/tomcat/webapps -d tomcat:latest
 ```
