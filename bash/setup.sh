@@ -9,13 +9,13 @@ wget --no-check-certificate --no-cookies --header \
 "Cookie: oraclelicense=accept-securebackup-cookie" \
 http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz
 
-mkdir -p /opt/lib/jvm
-tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/lib/jvm/
+mkdir -p /opt/jvm
+tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/jvm
 
 update-alternatives --remove-all javac
 update-alternatives --remove-all java
-update-alternatives --install /usr/bin/javac javac /opt/lib/jvm/jdk1.8.0_92/bin/javac 1
-update-alternatives --install /usr/bin/java java /opt/lib/jvm/jdk1.8.0_92/bin/java 1
+update-alternatives --install /usr/bin/javac javac /opt/jvm/jdk1.8.0_92/bin/javac 1
+update-alternatives --install /usr/bin/java java /opt/jvm/jdk1.8.0_92/bin/java 1
 update-alternatives --config javac
 update-alternatives --config java
 
@@ -45,8 +45,6 @@ wget https://download.jetbrains.com/idea/ideaIU-2016.2.3.tar.gz
 
 mkdir -p /opt/soft/
 tar -xf ideaIU-2016.2.3.tar.gz -C /opt/soft/
-
-chmod +x /opt/soft/idea-IU-162.1812.17/bin/idea.sh
 
 printf "${RED} <== export variables  ==> ${NC} \n"
 
