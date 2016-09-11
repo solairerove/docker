@@ -1,8 +1,8 @@
 ##### [MySQL](https://hub.docker.com/_/mysql/) image for docker:
 
-```shell
+```bash
 docker pull mysql
-docker run --name mysql-latest -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqldb_pass -p 3306:3306 -d mysql:latest
+docker run --name mysql-latest -v /opt/db/mysql-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqldb_pass -p 3306:3306 -d mysql:latest
 docker exec -it mysql-latest bash
 mysql -u root -p
 ```
@@ -10,7 +10,7 @@ ___
 
 ##### Create new db and access user:
 
-```mysql
+```sql
 create database database-name;
 grant all on database-name.* to 'username' identified by 'user-password';
 quit;

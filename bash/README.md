@@ -1,4 +1,4 @@
-##### Preinstall shell script for linux:
+##### Preinstall bash script for linux:
 
 ```bash
 sudo ./setup.sh

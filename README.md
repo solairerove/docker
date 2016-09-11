@@ -6,27 +6,11 @@
 
 *[jmeter-grafan](https://github.com/solairerove/jmeter-grafana)* - maven project with docker-compose
 
-*[mysql:latest](https://github.com/solairerove/docker/tree/master/mysql)* - mysql image with common configuration
+*[mysql:latest]()* - mysql image with common configuration
+
+*[postgres:9.4]()* - postgres:9.4 with common configuration
 ___
 
-##### Shell for preinstall:
+##### Bash script for preinstallation:
 
-*[setup.sh](https://github.com/solairerove/docker/tree/master/shell)* - deprecated...
-
-___
-
-Arch Linux world *frozen*:
-
-*[install.sh](https://github.com/solairerove/docker/blob/master/arch/install.sh)* - installation steps and xfce4 de install
-
-*[environment.sh](https://github.com/solairerove/docker/blob/master/arch/environment.sh)* - frozen...
-
-*[customize.sh](https://github.com/solairerove/docker/blob/master/arch/customize.sh)* - frozen...
-
-*[sound.sh](https://github.com/solairerove/docker/blob/master/arch/sound.sh)* - sound troubleshooting
-
-*[yaourt.sh](https://github.com/solairerove/docker/blob/master/arch/yaourt.sh)* - yaourt install
-
-*[git.sh]()* - git install and ssh configuration
-
-*[global.sh]()* - in process... 
+*[setup.sh]()* - quick environment installation to /opt

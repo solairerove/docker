@@ -7,16 +7,7 @@ docker run --name tomcat-8 -it -p 8989:8080 -d tomcat:8.0.37-jre8-alpine
 
 ___
 
-##### Tomcat8 image default(334MB):
-
-```bash
-docker pull tomcat:8.0.37-jre8
-docker run --name tomcat-default -it -p 8990:8080 -d tomcat:8.0.37-jre8
-```
-
-___
-
-##### Tomcat8 latest(357):
+##### Tomcat8 latest(357MB):
 
 ```bash
 docker pull tomcat
