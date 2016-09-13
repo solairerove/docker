@@ -6,7 +6,9 @@
 
 *[jmeter-grafan](https://github.com/solairerove/jmeter-grafana)* - maven project with docker-compose
 
-*[mysql:latest](https://github.com/solairerove/docker/tree/master/db/mysql)* - mysql image with common configuration
+*[mongo:latest]()* - latest mongo with out-of-box configuration
+
+*[mysql:latest](https://github.com/solairerove/docker/tree/master/db/mysql)* - latest mysql image
 
 *[postgres:9.4](https://github.com/solairerove/docker/tree/master/db/postgres)* - postgres:9.4 with common configuration
 ___
