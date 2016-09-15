@@ -2,22 +2,11 @@
 
 ```bash
 docker pull mysql
-docker run --name mysql-latest -v /opt/db/mysql-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=mysqldb_pass -p 3306:3306 -d mysql:latest
-docker exec -it mysql-latest bash
-mysql -u root -p
-```
-___
-
-##### Create new db and access user:
-
-```sql
-create database database-name;
-grant all on database-name.* to 'username' identified by 'user-password';
-quit;
+docker run --name mysql-latest -v /opt/db/mysql-latest:/var/lib/mysql -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker  -p 3306:3306 -d mysql:latest
 ```
 
 ___
 
 ##### Summary:
 
-So you pull image, run new container with your name, your root pass, your ports and db's files save in your host.
+So you pull image, run new container with your user, pass and db. Db's files save in host.
