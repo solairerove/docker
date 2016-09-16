@@ -2,7 +2,7 @@
 
 ```bash
 docker pull mysql
-docker run --name mysql-latest -v /opt/db/mysql-latest:/var/lib/mysql -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker  -p 3306:3306 -d mysql:latest
+docker run --name mysql-latest -v /opt/db/mysql-latest:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="mysqldb_pass" -e MYSQL_DATABASE="lportal" -e MYSQL_USER="lportal_user" -e MYSQL_PASSWORD="lportal_pass" -p 3306:3306 -d mysql:latest
 ```
 
 ___
