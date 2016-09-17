@@ -2,7 +2,7 @@
 
 ```bash
 docker pull mongo
-docker run --name mongo-latest -v /opt/db/mongo:/data/db -e MONGODB_USER="docker" -e MONGODB_PASS="docker" -e MONGODB_DATABASE="docker" -p 27017:27017 -d mongo:latest
+docker run --name mongo-latest -v /opt/db/mongo:/data/db -e MONGODB_USER=docker -e MONGODB_PASS=docker -e MONGODB_DATABASE=docker -p 27017:27017 -d mongo:latest
 ```
 ___
 
