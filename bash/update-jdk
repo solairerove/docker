@@ -1,0 +1,30 @@
+#!/bin/bash
+
+case "$1" in
+"")
+	echo ""
+	echo "Add preferred JDK version (6,7,8) as parameter"
+	echo "Example: update-jdk 8"
+	;;
+"6")
+	rm /opt/env/jdk
+	ln -s /opt/env/jdk6 /opt/env/jdk
+	;;
+"7")
+	rm /opt/env/jdk
+	ln -s /opt/env/jdk7 /opt/env/jdk
+	;;
+"8")
+	rm /opt/env/jdk
+	ln -s /opt/env/jdk8 /opt/env/jdk
+	;;
+*)
+	echo "Only JDK 7,8 available."
+	;;
+esac
+
+echo ""
+echo "--------------------------------"
+echo "Current java: "
+echo "--------------------------------"
+java -version

@@ -10,7 +10,7 @@ wget --no-check-certificate --no-cookies --header \
 http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz
 
 mkdir -p /opt/jvm
-tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/jvm
+tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/env/jdk
 
 update-alternatives --remove-all javac
 update-alternatives --remove-all java
@@ -49,4 +49,18 @@ tar -xf ideaIU-2016.2.3.tar.gz -C /opt/soft/
 printf "${RED} <== export variables  ==> ${NC} \n"
 
 rm -f /etc/profile.d/variables.sh
-cp variables.sh /etc/profile.d/
+cat > /etc/profile.d/variables.sh <<EOF
+#!/bin/bash
+
+export JAVA_HOME=/opt/env/jdk
+export PATH=$JAVA_HOME/bin:$PATH
+
+export M2_HOME=/opt/env/maven
+export PATH=$PATH:$M2_HOME/bin
+export M2_OPTS="-Xmx1256M -XX:MaxPermSize=512M"
+export MAVEN_OPTS="-Xmx1256m -XX:MaxPermSize=512m"
+
+EOF
+
+#rm -f /etc/profile.d/variables.sh
+#cp variables.sh /etc/profile.d/
