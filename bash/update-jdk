@@ -3,12 +3,8 @@
 case "$1" in
 "")
 	echo ""
-	echo "Add preferred JDK version (6,7,8) as parameter"
+	echo "Add preferred JDK version (7,8) as parameter"
 	echo "Example: update-jdk 8"
-	;;
-"6")
-	rm /opt/env/jdk
-	ln -s /opt/env/jdk6 /opt/env/jdk
 	;;
 "7")
 	rm /opt/env/jdk
