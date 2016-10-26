@@ -14,8 +14,8 @@ tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/env/jdk
 
 update-alternatives --remove-all javac
 update-alternatives --remove-all java
-update-alternatives --install /usr/bin/javac javac /opt/jvm/jdk1.8.0_92/bin/javac 1
-update-alternatives --install /usr/bin/java java /opt/jvm/jdk1.8.0_92/bin/java 1
+update-alternatives --install /usr/bin/javac javac /opt/env/jdk/bin/javac 1
+update-alternatives --install /usr/bin/java java /opt/env/jdk/bin/java 1
 update-alternatives --config javac
 update-alternatives --config java
 
@@ -52,13 +52,17 @@ rm -f /etc/profile.d/variables.sh
 cat > /etc/profile.d/variables.sh <<EOF
 #!/bin/bash
 
+export JAVA_BINDIR=/opt/env/jdk/bin
+export JAVA_ROOT=/opt/env/jdk
+export JRE_HOME=/opt/env/jdk/jre
 export JAVA_HOME=/opt/env/jdk
 export PATH=$JAVA_HOME/bin:$PATH
 
-export M2_HOME=/opt/env/maven
-export PATH=$PATH:$M2_HOME/bin
-export M2_OPTS="-Xmx1256M -XX:MaxPermSize=512M"
-export MAVEN_OPTS="-Xmx1256m -XX:MaxPermSize=512m"
+export M2_HOME=/opt/apache-maven-3.3.9
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+export M2_OPTS="-Xmx1256M"
+export MAVEN_OPTS="-Xmx1256m"
 
 EOF
 
