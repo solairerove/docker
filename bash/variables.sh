@@ -5,8 +5,8 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 export M2_HOME=/opt/env/maven
 export PATH=$PATH:$M2_HOME/bin
-export M2_OPTS="-Xmx1256M -XX:MaxPermSize=512M"
-export MAVEN_OPTS="-Xmx1256m -XX:MaxPermSize=512m"
+export M2_OPTS="-Xmx1024M"
+export MAVEN_OPTS="-Xmx1024M"
 
 export GRADLE_HOME=/opt/gradle-3.0
 export PATH=$GRADLE_HOME/bin:$PATH
