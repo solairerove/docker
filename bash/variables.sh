@@ -2,6 +2,7 @@
 
 export JAVA_HOME=/opt/env/jdk
 export PATH=$JAVA_HOME/bin:$PATH
+export JAVA_OPTS="-XX:MaxPermSize=128M"
 
 export M2_HOME=/opt/env/maven
 export PATH=$PATH:$M2_HOME/bin
