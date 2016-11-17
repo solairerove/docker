@@ -1,24 +1,35 @@
 FROM debian:jessie
 
-MAINTAINER "Nikita Krivitski" <nikita.krivitski@azati.com>
+MAINTAINER "Nikita Krivitski" <hax2033@gmail.com>
 
+ENV LOCALES_DEF en_US.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -sf /bin/true /sbin/initctl
-RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+RUN apt-get update &&  \
+    apt-get upgrade -y &&  \
+    DEBIAN_FRONTEND=noninteractive  \
+    apt-get -o Dpkg::Options::='--force-confnew' install -y \
+        locales\
+        curl
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    software-properties-common \
-    supervisor
+RUN set -- junk $LOCALES_DEF  \
+    shift;  \
+    for THE_LOCALE in $LOCALES_DEF; do  \
+        set --  $(echo $THE_LOCALE  |  awk -F'.' '{ print $1, $2 }');  \
+        INPUT_FILE=$1;  \
+        CHARMAP_FILE=$2;  \
+        localedef  --no-archive -c -i $INPUT_FILE -f $CHARMAP_FILE $THE_LOCALE;  \
+    done ; \
+    locale-gen
 
-RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
+RUN echo "generated locales are:" && locale -a
 
-RUN curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie"\
-  http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz \
+ENV JAVA_HOME /opt/jdk1.7.0_79
+
+RUN curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
+    http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz \
     | tar -xzf - -C /opt &&\
-    ln -s /opt/jdk1.7.0_79 /opt/jdk &&\
+    ln -s $JAVA_HOME /opt/jdk &&\
     rm -rf /opt/jdk/*src.zip \
            /opt/jdk/lib/missioncontrol \
            /opt/jdk/lib/visualvm \
@@ -39,15 +50,13 @@ RUN curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie"\
            /opt/jdk/jre/lib/amd64/libgstreamer-lite.so \
            /opt/jdk/jre/lib/amd64/libjavafx*.so \
            /opt/jdk/jre/lib/amd64/libjfx*.so \
-#    && addgroup -g 999 app && adduser -D  -G app -s /bin/false -u 999 app \
     && rm -rf /tmp/* \
     && rm -rf /var/cache/apk/* \
     && echo 'hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4' >> /etc/nsswitch.conf
 
-EXPOSE 8080
-#VOLUME ""
+ENV PATH ${PATH}:${JAVA_HOME}/bin
 
-RUN rm -rf /var/lib/apt/lists/*
-RUN apt-get clean
+RUN apt-get clean  &&  \
+    rm -rf /var/lib/apt/lists/*
 
-CMD ["bash"]
+CMD ["/bin/bash"]
