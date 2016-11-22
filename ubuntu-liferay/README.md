@@ -16,6 +16,7 @@ docker exec -u root -it [container_id] bash
 export TERM=xterm (nano)
 docker exec -it [CONTAINER_ID] /bin/bash -c "export TERM=xterm; exec bash"
 docker exec -it jenkins_jenkins_1 /bin/bash
+docker exec -ti <container-name-A> ping <container-name-B> 
 docker start name-of-container
 docker stop name-of-container
 docker rm name-of-container1 name-of-container2 ...
