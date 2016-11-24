@@ -1,0 +1,36 @@
+version: "2"
+
+services:
+
+  mysql:
+    container_name: mysql-liferay-7-ce-ga3-tomcat-alpine
+    image: mysql:5.6.34
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysqldb_pass
+      - MYSQL_DATABASE=lportal
+      - MYSQL_USER=lportal_user
+      - MYSQL_PASSWORD=lportal_pass
+      - character-set-server=utf8mb4
+      - collation-server=utf8mb4_unicode_c
+    volumes:
+      - /opt/docker/liferay-7-ce-ga3-tomcat-mysql-alpine/db:/var/lib/mysql
+    networks:
+      - lifenet
+
+  liferay-7:
+    depends_on:
+      - mysql
+    build: .
+    container_name: liferay-7-ce-ga3-tomcat-mysql-alpine
+    image: liferay:7-ce-ga3-tomcat-mysql-alpine
+    entrypoint: /usr/local/liferay-ce-portal-7.0-ga3/tomcat-8.0.32/bin/catalina.sh run
+    ports:
+      - "8082:8080"
+    volumes:
+      - /opt/docker/liferay-7-ce-ga3-tomcat-mysql-alpine/deploy:/usr/local/liferay-ce-portal-7.0-ga3/deploy
+    networks:
+      - lifenet
+
+networks:
+  lifenet:
+    driver: bridge
