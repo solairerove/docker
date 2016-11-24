@@ -18,8 +18,8 @@ services:
     depends_on:
       - postgres
     build: .
-    container_name: liferay-7-ce-ga3-tomcat-postres
-    image: liferay:7-ce-ga3-tomcat-postres
+    container_name: liferay-7-ce-ga3-tomcat-postgres
+    image: liferay:7-ce-ga3-tomcat-postgres
     entrypoint: /usr/local/liferay-ce-portal-7.0-ga3/tomcat-8.0.32/bin/catalina.sh run
     ports:
       - "8082:8080"
