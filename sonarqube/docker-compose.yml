@@ -4,8 +4,6 @@ services:
   db:
     container_name: postgres-sonar
     image: postgres:latest
-    ports:
-      - "5432:5432"
     networks:
       - sonarnet
     environment:

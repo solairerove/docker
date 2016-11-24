@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+
+  postgres:
+    container_name: postgres-liferay-7-ce-ga3-tomcat-alpine
+    image: postgres:9.4-alpine
+    environment:
+      - POSTGRES_USER=lportal_user
+      - POSTGRES_PASSWORD=lportal_pass
+      - POSTGRES_DB=lportal
+    volumes:
+      - /opt/docker/liferay-7-ce-ga3-tomcat-postgres-alpine/db:/var/lib/postgresql/data
+    networks:
+      - lifenet
+
+  liferay-7:
+    depends_on:
+      - postgres
+    build: .
+    container_name: liferay-7-ce-ga3-tomcat-postgres-alpine
+    image: liferay:7-ce-ga3-tomcat-postgres-alpine
+    entrypoint: /usr/local/liferay-ce-portal-7.0-ga3/tomcat-8.0.32/bin/catalina.sh run
+    ports:
+      - "8082:8080"
+    volumes:
+      - /opt/docker/liferay-7-ce-ga3-tomcat-postgres-alpine/deploy:/usr/local/liferay-ce-portal-7.0-ga3/deploy
+    networks:
+      - lifenet
+
+networks:
+  lifenet:
+    driver: bridge

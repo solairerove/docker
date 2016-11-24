@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION="1.7.1"
+VERSION="1.8.1"
 IMAGE="docker/compose:$VERSION"
 
 
