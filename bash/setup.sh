@@ -23,21 +23,21 @@ printf "${RED} <== install maven 3.3.9 ==> ${NC} \n"
 
 wget http://apache.osuosl.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 
-tar -xf apache-maven-3.3.9-bin.tar.gz -C /opt/
+tar -xf apache-maven-3.3.9-bin.tar.gz -C /opt/env
 
-printf "${RED} <== install tomcat 8.0.37 ==> ${NC} \n"
+printf "${RED} <== install tomcat 8.0.36 ==> ${NC} \n"
 
 wget --quiet --no-cookies \
-http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-8/v8.0.37/bin/apache-tomcat-8.0.37.tar.gz
+http://ftp.byfly.by/pub/apache.org/tomcat/tomcat-8/v8.0.36/bin/apache-tomcat-8.0.36.tar.gz
 
 printf "${RED} <== extract compressed tar file ==> ${NC} \n"
 
-tar -xf apache-tomcat-8.0.37.tar.gz -C /opt/
-rm -rf /opt/apache-tomcat-8.0.37/webapps/examples
-rm -rf /opt/apache-tomcat-8.0.37/webapps/docs
+tar -xf apache-tomcat-8.0.36.tar.gz -C /opt/env
+rm -rf /opt/env/apache-tomcat-8.0.36/webapps/examples
+rm -rf /opt/env/apache-tomcat-8.0.36/webapps/docs
 
-chown -R $(whoami) /opt/apache-tomcat-8.0.37/
-chmod -R 777 /opt/apache-tomcat-8.0.37/
+chown -R $(whoami) /opt/env/apache-tomcat-8.0.36/
+chmod -R 777 /opt/env/apache-tomcat-8.0.36/
 
 printf "${RED} <== install Intellij IDEA ==> ${NC} \n"
 
@@ -48,23 +48,4 @@ tar -xf ideaIU-2016.2.3.tar.gz -C /opt/soft/
 
 printf "${RED} <== export variables  ==> ${NC} \n"
 
-rm -f /etc/profile.d/variables.sh
-cat > /etc/profile.d/variables.sh <<EOF
-#!/bin/bash
-
-export JAVA_BINDIR=/opt/env/jdk/bin
-export JAVA_ROOT=/opt/env/jdk
-export JRE_HOME=/opt/env/jdk/jre
-export JAVA_HOME=/opt/env/jdk
-export PATH=$JAVA_HOME/bin:$PATH
-
-export M2_HOME=/opt/apache-maven-3.3.9
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
-export M2_OPTS="-Xmx1256M"
-export MAVEN_OPTS="-Xmx1256m"
-
-EOF
-
-#rm -f /etc/profile.d/variables.sh
-#cp variables.sh /etc/profile.d/
+cp variables.sh /etc/profile.d/
