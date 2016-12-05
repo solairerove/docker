@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apt-get update
-apt-get install apt-transport-https ca-certificates
+apt-get install -y apt-transport-https ca-certificates
 
 apt-key adv \
   --keyserver hkp://ha.pool.sks-keyservers.net:80 \
@@ -10,9 +10,9 @@ apt-key adv \
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | tee /etc/apt/sources.list.d/docker.list
 apt-get update
 
-apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual
 
-apt-get install docker-engine
+apt-get install -y docker-engine
 service docker start
 usermod -aG docker solairerove
 systemctl enable docker
