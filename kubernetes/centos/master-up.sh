@@ -1,7 +1,10 @@
 #!/bin/bash
 
-for SERVICES in etcd kube-apiserver kube-controller-manager kube-scheduler; do
-    systemctl restart $SERVICES
-    systemctl enable $SERVICES
-    systemctl status $SERVICES
+yum install kubernetes-master -y
+
+for SERVICE in kube-apiserver kube-scheduler kube-controller-manager
+do
+    systemctl restart $SERVICE
+    systemctl enable $SERVICE
+    systemctl status $SERVICE
 done
