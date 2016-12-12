@@ -59,6 +59,7 @@ EOF
 ```console
 # Columnar output
 # kubectl get endpoints --all-namespaces
+$ kubectl get pods --all-namespaces -o wide
 $ kubectl get events
 $ kubectl get services                          # List all services in the namespace
 $ kubectl get pods --all-namespaces             # List all pods in all namespaces
