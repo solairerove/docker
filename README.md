@@ -3,6 +3,7 @@
 ##### Cookies:
 
 ```bash
+docker ps --format="table {{.ID}}\t{{.Image}}"
 docker attach [CONTAINER_ID]
 docker exec -u root -it [CONTAINER_ID] bash
 export TERM=xterm (nano)
