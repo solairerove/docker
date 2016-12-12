@@ -99,6 +99,7 @@ $ kubectl get nodes -o jsonpath='{range .items[*]}{@.metadata.name}:{range @.sta
 ## Modifying and Deleting Resources
 
 ```console
+$ kubectl delete pod kube-dns-654381707-wjcl8 --name-space=kube-system
 $ kubectl label pods <pod-name> new-label=awesome                  # Add a Label
 $ kubectl annotate pods <pod-name> icon-url=http://goo.gl/XXBTWq   # Add an annotation
 
