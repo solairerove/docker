@@ -50,7 +50,6 @@ data:
   username: $(echo "jane" | base64)
 EOF
 
-# TODO: kubectl-explain example
 ```
 
 
