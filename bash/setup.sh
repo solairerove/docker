@@ -9,8 +9,9 @@ wget --no-check-certificate --no-cookies --header \
 "Cookie: oraclelicense=accept-securebackup-cookie" \
 http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz
 
-mkdir -p /opt/env
-tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/env/jdk
+# issue
+# mkdir -p /opt/env
+# tar -xf jdk-8u92-linux-x64.tar.gz -C /opt/env/jdk
 
 update-alternatives --remove-all javac
 update-alternatives --remove-all java
