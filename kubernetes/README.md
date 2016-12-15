@@ -59,6 +59,7 @@ EOF
 # Columnar output
 # kubectl get endpoints --all-namespaces
 $ kubectl get pods --all-namespaces -o wide
+$ kubectl delete pods -n=${namespace}
 $ kubectl get events
 $ kubectl logs kube-dns-654381707-m28q0 --namespace=kube-system kube-dns
 $ kubectl get services                          # List all services in the namespace
