@@ -52,3 +52,33 @@ and modifying configuration values.
 
 Ensure the latest CoreOS vagrant image will be used by running `vagrant box update`.
 Then run `vagrant up` and wait for Vagrant to provision and boot the virtual machines.
+
+## Fucking issue
+
+`sudo ln -sf /usr/local/bin/openssl /opt/vagrant/embedded/bin/openssl`
+[one more](http://tech.yipp.ca/vagrant/fix-vagrant-machine-index-become-corrupt/)
+
+### Configure kubectl
+
+## Update the local-user kubeconfig
+
+Configure your local Kubernetes client using the following commands:
+``` bash
+$ kubectl config set-cluster vagrant-multi-cluster --server=https://172.17.4.101:443 --certificate-authority=${PWD}/ssl/ca.pem
+$ kubectl config set-credentials vagrant-multi-admin --certificate-authority=${PWD}/ssl/ca.pem --client-key=${PWD}/ssl/admin-key.pem --client-certificate=${PWD}/ssl/admin.pem
+$ kubectl config set-context vagrant-multi --cluster=vagrant-multi-cluster --user=vagrant-multi-admin
+$ kubectl config use-context vagrant-multi
+```
+
+Check that kubectl is configured properly by inspecting the cluster:
+``` bash
+$ kubectl get nodes
+NAME          LABELS                               STATUS
+172.17.4.201   kubernetes.io/hostname=172.17.4.201   Ready
+```
+
+### Install a sample application
+``` bash
+# kubectl create namespace sock-shop
+# kubectl apply -n sock-shop -f "https://github.com/microservices-demo/microservices-demo/blob/master/deploy/kubernetes/complete-demo.yaml?raw=true"
+```
